@@ -1,6 +1,6 @@
 let correctAnswer;
 let points = 0;
-let currentProblemNum = 2;
+let currentProblemNum = 1;
 
 
 /**
@@ -88,8 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
         over.addEventListener('click',() => {
 
             points = 0;
-            currentProblemNum = 2;
+            currentProblemNum = 1;
             populateQuestionAndAnswer();
+
+            //show the possible answers again (this is for when after the user is done with answering 10 questions)
+            document.getElementById('answers').style.display = ''; 
+            document.querySelector('.expression').style.display = '';
 
             const currentScore = document.querySelector('.currentScore')
             currentScore.innerText = 0
@@ -99,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         })
     })
-
 
     populateQuestionAndAnswer(); ////populate question and answers the first time
 
@@ -112,68 +115,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         list.addEventListener('click', () => {
 
+            currentProblemNum++ //increment and move to the next question 
+
             if (currentProblemNum <= 11) {
                 if (parseInt(list.innerText) === correctAnswer) {
-
-                    //populateQuestionAndAnswer();
-
-                    //const currentProblem = document.querySelector('.currentProblem')
-                    //currentProblem.innerText = currentProblemNum;
 
                     points++
                     const currentScore = document.querySelector('.currentScore')
                     currentScore.innerText = points
+
                 }
 
-
-                
                 const currentProblem = document.querySelector('.currentProblem')
 
                 if(currentProblemNum<11){
                     currentProblem.innerText = currentProblemNum;
                 }
-                currentProblemNum++
-
+            
                 populateQuestionAndAnswer();
 
             }
             
             if (currentProblemNum === 11){
-                //const answers = document.querySelectorAll('#answers')
                 document.getElementById('answers').style.display = 'none';
-                document.getElementById('.expression show-hide').style.display = 'none';
+                document.querySelector('.expression').style.display = 'none';
 
             }
-            //if the number of questions asked is less than 10, populate next new quiz question
-            /*elseif (currentProblemNum <= 10) {
-                //const currentProblem = document.querySelector('.currentProblem')
-                //currentProblem.innerText = currentProblemNum;
-
-                populateQuestionAndAnswer(); //populate question and answers again
-
-                clickedAnswer = document.querySelector('li')
-                clickedAnswer.addEventListener('click', (event) => {
-
-                    clickedAnswer = document.querySelector('li')
-                    if (parseInt(event.target.innerText) === correctAnswer) {
-                        points++
-                        const currentScore = document.querySelector('.currentScore')
-                        currentScore.innerText = points
-                    }
-                    //userClickAnswer = true;
-                })
-
-            }*/
-
 
         })
 
     })
 
-
-
-
-
+    //***FOR TESTING ONLY - PRINT OUTS */
     //console.log(leftNumber + ' * ' + rightNumber + ' = ' + correctAnswer)
     //console.log('array: ' + arrayNumbers)
 
