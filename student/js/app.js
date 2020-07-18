@@ -83,6 +83,7 @@ function populateQuestionAndAnswer() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    //THIS IS FOR WHEN THE USER WANT TO START OVER THE QUIZ
     const startOver = document.querySelectorAll('#btnStartOver')
     startOver.forEach((over) => {
         over.addEventListener('click',() => {
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //show the possible answers again (this is for when after the user is done with answering 10 questions)
             document.getElementById('answers').style.display = ''; 
             document.querySelector('.expression').style.display = '';
+            document.querySelector('.show-hide').style.display = '';
 
             const currentScore = document.querySelector('.currentScore')
             currentScore.innerText = 0
@@ -132,13 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentProblem.innerText = currentProblemNum;
                 }
             
-                populateQuestionAndAnswer();
+                populateQuestionAndAnswer(); //Keep populating the questions & answers 9 more times (for a total of 10 questions)
 
             }
             
             if (currentProblemNum === 11){
                 document.getElementById('answers').style.display = 'none';
                 document.querySelector('.expression').style.display = 'none';
+                document.querySelector('.show-hide').style.display = 'none';
 
             }
 
